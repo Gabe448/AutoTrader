@@ -10,9 +10,9 @@ intents.guilds = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 # Configuration - CHANGE THESE
-YOUR_USER_ID = 973341703597617185  # Your Discord user ID
-TRIGGER_ROLE_ID = 1460610412813881425  # The role ID that triggers forwarding
-DESTINATION_CHANNEL_ID = 1473364678754177236  # Where to forward messages
+YOUR_USER_ID =1235358794146381877  # Your Discord user ID
+TRIGGER_ROLE_ID = 1493346373502767227  # The role ID that triggers forwarding
+DESTINATION_CHANNEL_ID = 1506136302872166480  # Where to forward messages
 
 @bot.event
 async def on_ready():
