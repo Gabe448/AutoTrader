@@ -61,7 +61,7 @@ async def on_message(message):
         
         # Create a simple, clean embed with larger text
         embed = nextcord.Embed(
-            description=f"## {clean_content}",  # ## makes text larger
+            description=f"# {clean_content}",  # ## makes text larger
             color=0x5865F2,
             timestamp=message.created_at
         )
