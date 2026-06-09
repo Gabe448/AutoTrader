@@ -11,7 +11,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 # Configuration - CHANGE THESE
 YOUR_USER_ID =1511597709834977320  # Your Discord user ID
-TRIGGER_ROLE_ID = 1493346373502767227  # The role ID that triggers forwarding
+TRIGGER_ROLE_ID =1513925126033379638  # The role ID that triggers forwarding
 DESTINATION_CHANNEL_ID = 1506136302872166480  # Where to forward messages
 
 @bot.event
