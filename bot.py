@@ -58,8 +58,8 @@ async def forward_message(message, rule):
         return
 
     clean_content = message.content
-    for role in message.role_mentions:
-        clean_content = clean_content.replace(f"<@&{role.id}>", "").strip()
+    for role_id in message.raw_role_mentions:
+        clean_content = clean_content.replace(f"<@&{role_id}>", "").strip()
 
     image_url = None
     for attachment in message.attachments:
@@ -95,17 +95,28 @@ async def on_message(message):
         return
 
     try:
+        raw_role_mentions = set(message.raw_role_mentions)
+
         for rule in FORWARDING_RULES:
             if message.author.id != rule["user_id"]:
                 continue
 
-            if not any(
-                role.id == rule["trigger_role_id"] for role in message.role_mentions
-            ):
+            if rule["trigger_role_id"] not in raw_role_mentions:
                 continue
 
+            print(
+                f"Matched {rule['name']} for message {message.id} "
+                f"from user {message.author.id}"
+            )
             await forward_message(message, rule)
             break
+        else:
+            if message.author.id in {rule["user_id"] for rule in FORWARDING_RULES}:
+                print(
+                    f"No forwarding rule matched message {message.id} "
+                    f"from user {message.author.id}; "
+                    f"raw role mentions={list(raw_role_mentions)}"
+                )
 
     except Exception as error:
         print(f"Error forwarding message: {error}")
